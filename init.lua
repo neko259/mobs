@@ -251,7 +251,7 @@ mobs:register_mob("mobs:creeper", {
 	mesh = "creeper.x",
 	makes_footstep_sound = false,
 	sounds = {
-		attack = "Fuse",
+		approach = "Fuse",
 		death = "Creeperdeath",
 		hurt = "Creeper4",
 	},
@@ -270,7 +270,7 @@ mobs:register_mob("mobs:creeper", {
 	lava_damage = 5,
 	light_damage = 0,
 	view_range = 16,
-	attack_type = "dogfight",
+	attack_type = "bomb",
 })
 mobs:register_spawn("mobs:creeper", {"group:crumbly", "group:cracky", "group:choppy"}, 7, -1, 5000, 5, 31000)
 
