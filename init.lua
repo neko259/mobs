@@ -283,6 +283,53 @@ mobs:register_mob("mobs:pig", {
 mobs:register_spawn("mobs:pig", {"default:dirt_with_grass"}, 20, 8, 9000, 6, 31000)
 
 
+mobs:register_mob("mobs:cow", {
+	type = "animal",
+	hp_max = 5,
+	collisionbox = {-0.3, -0.01, -0.8, 0.3, 1.8, 0.8},
+	textures = {"cow.png"},
+	visual = "mesh",
+	mesh = "cow.x",
+	makes_footstep_sound = true,
+	walk_velocity = 1,
+	armor = 200,
+	drops = {
+		{name = "mobs:meat_raw",
+		chance = 1,
+		min = 3,
+		max = 5,},
+	},
+	drawtype = "front",
+	water_damage = 1,
+	lava_damage = 5,
+	light_damage = 0,
+	sounds = {
+		random = "Cow1",
+		death = "Cowhurt1",
+		hurt = "Cowhurt1",
+	},
+	animation = {
+		speed_normal = 15,
+		stand_start = 0,
+		stand_end = 80,
+		walk_start = 81,
+		walk_end = 100,
+	},
+	follow = "farming:wheat",
+	view_range = 5,
+	on_rightclick = function(self, clicker)
+		local item = clicker:get_wielded_item()
+		if item:get_name() == "bucket:bucket_empty" and clicker:get_inventory() then
+			if minetest.registered_items["food:milk"] then
+				clicker:get_inventory():add_item("main", ItemStack("food:milk "..math.random(1,3)))
+			end
+		end
+	end,
+})
+mobs:register_spawn("mobs:cow", {"default:dirt_with_grass"}, 20, 8, 9000, 5, 31000)
+
+
+
 mobs:register_mob("mobs:creeper", {
 	type = "monster",
 	hp_max = 5,
