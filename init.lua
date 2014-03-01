@@ -190,7 +190,9 @@ mobs:register_mob("mobs:sheep", {
 	lava_damage = 5,
 	light_damage = 0,
 	sounds = {
-		random = "mobs_sheep",
+		random = "Sheep3",
+		death = "Sheep3",
+		hurt = "Sheep3",
 	},
 	animation = {
 		speed_normal = 15,
@@ -240,7 +242,46 @@ mobs:register_mob("mobs:sheep", {
 		end
 	end,
 })
-mobs:register_spawn("mobs:sheep", {"default:dirt_with_grass"}, 20, 8, 9000, 8, 31000)
+mobs:register_spawn("mobs:sheep", {"default:dirt_with_grass"}, 20, 8, 9000, 6, 31000)
+
+
+mobs:register_mob("mobs:pig", {
+	type = "animal",
+	hp_max = 5,
+	collisionbox = {-0.3, -0.01, -0.4, 0.3, 1, 0.4},
+	textures = {"pig.png"},
+	visual = "mesh",
+	mesh = "pig.x",
+	makes_footstep_sound = true,
+	walk_velocity = 1,
+	armor = 200,
+	drops = {
+		{name = "mobs:meat_raw",
+		chance = 1,
+		min = 2,
+		max = 3,},
+	},
+	drawtype = "front",
+	water_damage = 1,
+	lava_damage = 5,
+	light_damage = 0,
+	sounds = {
+		random = "Pig2",
+		death = "Pigdeath",
+		hurt = "Pig2",
+	},
+	animation = {
+		speed_normal = 15,
+		stand_start = 0,
+		stand_end = 80,
+		walk_start = 81,
+		walk_end = 100,
+	},
+	follow = "farming:wheat",
+	view_range = 5,
+})
+mobs:register_spawn("mobs:pig", {"default:dirt_with_grass"}, 20, 8, 9000, 6, 31000)
+
 
 mobs:register_mob("mobs:creeper", {
 	type = "monster",
@@ -272,7 +313,7 @@ mobs:register_mob("mobs:creeper", {
 	view_range = 16,
 	attack_type = "bomb",
 })
-mobs:register_spawn("mobs:creeper", {"group:crumbly", "group:cracky", "group:choppy"}, 7, -1, 5000, 5, 31000)
+mobs:register_spawn("mobs:creeper", {"group:crumbly", "group:cracky", "group:choppy"}, 7, -1, 5000, 4, 31000)
 
 
 
