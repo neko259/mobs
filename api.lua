@@ -504,7 +504,9 @@ mobs.default_definition = {
 			if hitter and hitter:is_player() and hitter:get_inventory() then
 				for _,drop in ipairs(self.drops) do
 					if math.random(1, drop.chance) == 1 then
-						hitter:get_inventory():add_item("main", ItemStack(drop.name.." "..math.random(drop.min, drop.max)))
+						if minetest.registered_items[drop.name] ~= nil then
+							hitter:get_inventory():add_item("main", ItemStack(drop.name.." "..math.random(drop.min, drop.max)))
+						end
 					end
 				end
 			end
