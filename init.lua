@@ -121,7 +121,7 @@ mobs:register_mob("mobs:sand_monster", {
 		punch_end = 105,
 	},
 })
-mobs:register_spawn("mobs:sand_monster", {"default:desert_sand"}, 20, -1, 7000, 3, 31000)
+-- mobs:register_spawn("mobs:sand_monster", {"default:desert_sand"}, 20, -1, 7000, 3, 31000)
 
 mobs:register_mob("mobs:tree_monster", {
 	type = "monster",
@@ -173,9 +173,9 @@ mobs:register_mob("mobs:sheep", {
 	type = "animal",
 	hp_max = 5,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
-	textures = {"mobs_sheep.png"},
+	textures = {"sheep.png"},
 	visual = "mesh",
-	mesh = "mobs_sheep.x",
+	mesh = "sheep.x",
 	makes_footstep_sound = true,
 	walk_velocity = 1,
 	armor = 200,
@@ -240,7 +240,41 @@ mobs:register_mob("mobs:sheep", {
 		end
 	end,
 })
-mobs:register_spawn("mobs:sheep", {"default:dirt_with_grass"}, 20, 8, 9000, 1, 31000)
+mobs:register_spawn("mobs:sheep", {"default:dirt_with_grass"}, 20, 8, 9000, 8, 31000)
+
+mobs:register_mob("mobs:creeper", {
+	type = "monster",
+	hp_max = 5,
+	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.8, 0.4},
+	textures = {"creeper.png"},
+	visual = "mesh",
+	mesh = "creeper.x",
+	makes_footstep_sound = false,
+	sounds = {
+		attack = "Fuse",
+		death = "Creeperdeath",
+		hurt = "Creeper4",
+	},
+	walk_velocity = 1,
+	run_velocity = 2,
+	damage = 1,
+	armor = 200,
+	drops = {
+		{name = "bettertnt:gunpowder",
+		chance = 1,
+		min = 0,
+		max = 2,},
+	},
+	drawtype = "front",
+	water_damage = 1,
+	lava_damage = 5,
+	light_damage = 0,
+	view_range = 16,
+	attack_type = "dogfight",
+})
+mobs:register_spawn("mobs:creeper", {"group:crumbly", "group:cracky", "group:choppy"}, 7, -1, 5000, 5, 31000)
+
+
 
 minetest.register_craftitem("mobs:meat_raw", {
 	description = "Raw Meat",
