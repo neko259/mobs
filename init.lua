@@ -39,7 +39,7 @@ mobs:register_mob("mobs:dirt_monster", {
 		punch_end = 63,
 	}
 })
-mobs:register_spawn("mobs:dirt_monster", {"default:dirt_with_grass"}, 3, -1, 7000, 3, 31000)
+-- mobs:register_spawn("mobs:dirt_monster", {"default:dirt_with_grass"}, 3, -1, 7000, 3, 31000)
 
 mobs:register_mob("mobs:stone_monster", {
 	type = "monster",
@@ -80,7 +80,7 @@ mobs:register_mob("mobs:stone_monster", {
 		punch_end = 63,
 	}
 })
-mobs:register_spawn("mobs:stone_monster", {"default:stone"}, 3, -1, 7000, 3, 0)
+-- mobs:register_spawn("mobs:stone_monster", {"default:stone"}, 3, -1, 7000, 3, 0)
 
 mobs:register_mob("mobs:sand_monster", {
 	type = "monster",
@@ -167,7 +167,7 @@ mobs:register_mob("mobs:tree_monster", {
 		punch_end = 62,
 	},
 })
-mobs:register_spawn("mobs:tree_monster", {"default:leaves", "default:jungleleaves"}, 3, -1, 7000, 3, 31000)
+-- mobs:register_spawn("mobs:tree_monster", {"default:leaves", "default:jungleleaves"}, 3, -1, 7000, 3, 31000)
 
 mobs:register_mob("mobs:sheep", {
 	type = "animal",
@@ -236,8 +236,8 @@ mobs:register_mob("mobs:sheep", {
 				clicker:get_inventory():add_item("main", ItemStack("wool:white "..math.random(1,3)))
 			end
 			self.object:set_properties({
-				textures = {"mobs_sheep_shaved.png"},
-				mesh = "mobs_sheep_shaved.x",
+				-- textures = {"mobs_sheep_shaved.png"},
+				mesh = "sheep_sheared.x",
 			})
 		end
 	end,
@@ -468,7 +468,7 @@ mobs:register_mob("mobs:oerkki", {
 		speed_run = 15,
 	},
 })
-mobs:register_spawn("mobs:oerkki", {"default:stone"}, 2, -1, 7000, 3, -10)
+-- mobs:register_spawn("mobs:oerkki", {"default:stone"}, 2, -1, 7000, 3, -10)
 
 mobs:register_mob("mobs:dungeon_master", {
 	type = "monster",
@@ -512,7 +512,7 @@ mobs:register_mob("mobs:dungeon_master", {
 		speed_run = 15,
 	},
 })
-mobs:register_spawn("mobs:dungeon_master", {"default:stone"}, 2, -1, 7000, 1, -50)
+-- mobs:register_spawn("mobs:dungeon_master", {"default:stone"}, 2, -1, 7000, 1, -50)
 
 mobs:register_arrow("mobs:fireball", {
 	visual = "sprite",
