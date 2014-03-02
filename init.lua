@@ -242,7 +242,7 @@ mobs:register_mob("mobs:sheep", {
 		end
 	end,
 })
-mobs:register_spawn("mobs:sheep", {"default:dirt_with_grass"}, 20, 8, 9000, 6, 31000)
+mobs:register_spawn("mobs:sheep", {"default:dirt_with_grass"}, 20, 12, 5000, 8, 31000)
 
 
 mobs:register_mob("mobs:pig", {
@@ -280,7 +280,7 @@ mobs:register_mob("mobs:pig", {
 	follow = "farming:wheat",
 	view_range = 5,
 })
-mobs:register_spawn("mobs:pig", {"default:dirt_with_grass"}, 20, 8, 9000, 6, 31000)
+mobs:register_spawn("mobs:pig", {"default:dirt_with_grass"}, 20, 12, 5000, 8, 31000)
 
 
 mobs:register_mob("mobs:cow", {
@@ -326,7 +326,7 @@ mobs:register_mob("mobs:cow", {
 		end
 	end,
 })
-mobs:register_spawn("mobs:cow", {"default:dirt_with_grass"}, 20, 8, 9000, 5, 31000)
+mobs:register_spawn("mobs:cow", {"default:dirt_with_grass"}, 20, 8, 7000, 7, 31000)
 
 
 
@@ -360,7 +360,7 @@ mobs:register_mob("mobs:creeper", {
 	view_range = 16,
 	attack_type = "bomb",
 })
-mobs:register_spawn("mobs:creeper", {"group:crumbly", "group:cracky", "group:choppy"}, 7, -1, 5000, 4, 31000)
+mobs:register_spawn("mobs:creeper", {"group:crumbly", "group:cracky", "group:choppy", "group:snappy"}, 7, -1, 5000, 4, 31000)
 
 
 
@@ -405,7 +405,7 @@ mobs:register_mob("mobs:rat", {
 		end
 	end,
 })
-mobs:register_spawn("mobs:rat", {"default:dirt_with_grass", "default:stone"}, 20, -1, 7000, 1, 31000)
+-- mobs:register_spawn("mobs:rat", {"default:dirt_with_grass", "default:stone"}, 20, -1, 7000, 1, 31000)
 
 minetest.register_craftitem("mobs:rat", {
 	description = "Rat",

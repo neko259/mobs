@@ -248,7 +248,7 @@ mobs.default_definition = {
 				local s = self.object:getpos()
 				local p = player:getpos()
 				local dist = ((p.x-s.x)^2 + (p.y-s.y)^2 + (p.z-s.z)^2)^0.5
-				if dist < 5 and self.attack_type == "bomb" and self.bombmode ~= "armed" then
+				if dist < 2 and self.attack_type == "bomb" and self.bombmode ~= "armed" then
 					if self.sounds and self.sounds.approach then
 						minetest.sound_play(self.sounds.approach, {object = self.object})
 					end
@@ -380,6 +380,10 @@ mobs.default_definition = {
 			end
 			if p.x > s.x then
 				yaw = yaw+math.pi
+			end
+			-- creepers use a spiraling approach:
+			if self.attack_type == "bomb" then
+				yaw = yaw - 14*math.pi/180
 			end
 			self.object:setyaw(yaw)
 			if self.attack.dist > 2 then
@@ -527,15 +531,14 @@ function mobs:register_mob(name, def)
 end
 
 function mobs:check_player_dist(pos, node)
-	local rval = nil
 	for _,player in pairs(minetest.get_connected_players()) do
 		local p = player:getpos()
 		local dist = ((p.x-pos.x)^2 + (p.y-pos.y)^2 + (p.z-pos.z)^2)^0.5
 		if dist < 24 then
-			rval = 1
+			return 1
 		end
 	end
-	return rval
+	return nil
 end
 
 mobs.spawning_mobs = {}
@@ -545,7 +548,7 @@ function mobs:register_spawn(name, nodes, max_light, min_light, chance, active_o
 		minetest.register_abm({
 			nodenames = nodes,
 			neighbors = {"air"},
-			interval = 30,
+			interval = 10,
 			chance = chance,
 			action = function(pos, node, _, active_object_count_wider)
 				if active_object_count_wider > active_object_count then
