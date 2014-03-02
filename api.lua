@@ -526,6 +526,18 @@ function mobs:register_mob(name, def)
 	minetest.register_entity(name, def)
 end
 
+function mobs:check_player_dist(pos, node)
+	local rval = nil
+	for _,player in pairs(minetest.get_connected_players()) do
+		local p = player:getpos()
+		local dist = ((p.x-pos.x)^2 + (p.y-pos.y)^2 + (p.z-pos.z)^2)^0.5
+		if dist < 24 then
+			rval = 1
+		end
+	end
+	return rval
+end
+
 mobs.spawning_mobs = {}
 function mobs:register_spawn(name, nodes, max_light, min_light, chance, active_object_count, max_height, spawn_func)
 	if minetest.setting_getbool(string.gsub(name,":","_").."_spawn") ~= false then
@@ -565,7 +577,9 @@ function mobs:register_spawn(name, nodes, max_light, min_light, chance, active_o
 				if spawn_func and not spawn_func(pos, node) then
 					return
 				end
-				
+				if mobs:check_player_dist(pos, node) then
+					return
+				end
 				if minetest.setting_getbool("display_mob_spawn") then
 					minetest.chat_send_all("[mobs] Add "..name.." at "..minetest.pos_to_string(pos))
 				end
