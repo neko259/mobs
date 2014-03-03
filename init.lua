@@ -195,11 +195,19 @@ mobs:register_mob("mobs:sheep", {
 		hurt = "Sheep3",
 	},
 	animation = {
-		speed_normal = 15,
+		speed_normal = 24,
 		stand_start = 0,
-		stand_end = 80,
-		walk_start = 81,
-		walk_end = 100,
+		stand_end = 23,
+		walk_start = 24,
+		walk_end = 49,
+		hurt_start = 118,
+		hurt_end = 154,
+		death_start = 154,
+		death_end = 179,
+		eat_start = 49,
+		eat_end = 78,
+		look_start = 78,
+		look_end = 108,
 	},
 	follow = "farming:wheat",
 	view_range = 5,
@@ -236,8 +244,8 @@ mobs:register_mob("mobs:sheep", {
 				clicker:get_inventory():add_item("main", ItemStack("wool:white "..math.random(1,3)))
 			end
 			self.object:set_properties({
-				-- textures = {"mobs_sheep_shaved.png"},
-				mesh = "sheep_sheared.x",
+				textures = {"sheep_sheared.png"},
+				-- mesh = "sheep_sheared.x",
 			})
 		end
 	end,
