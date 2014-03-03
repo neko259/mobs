@@ -561,6 +561,7 @@ mobs.default_definition = {
 	end,
 	
 	on_punch = function(self, hitter)
+	-- death happens at 20 hp so we can play the death animation:
 		if self.object:get_hp() <= 20 then
 			self:set_animation("death")
 			self.object:set_hp(1000)

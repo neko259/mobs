@@ -171,7 +171,7 @@ mobs:register_mob("mobs:tree_monster", {
 
 mobs:register_mob("mobs:sheep", {
 	type = "animal",
-	hp_max = 50,
+	hp_max = 25,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
 	textures = {"sheep.png"},
 	visual = "mesh",
@@ -255,7 +255,7 @@ mobs:register_spawn("mobs:sheep", {"default:dirt_with_grass"}, 20, 12, 5000, 8, 
 
 mobs:register_mob("mobs:pig", {
 	type = "animal",
-	hp_max = 50,
+	hp_max = 25,
 	collisionbox = {-0.3, -0.01, -0.4, 0.3, 1, 0.4},
 	textures = {"pig.png"},
 	visual = "mesh",
@@ -301,7 +301,7 @@ mobs:register_spawn("mobs:pig", {"default:dirt_with_grass"}, 20, 12, 5000, 8, 31
 
 mobs:register_mob("mobs:cow", {
 	type = "animal",
-	hp_max = 50,
+	hp_max = 28,
 	collisionbox = {-0.3, -0.01, -0.8, 0.3, 1.8, 0.8},
 	textures = {"cow.png"},
 	visual = "mesh",
@@ -356,7 +356,7 @@ mobs:register_spawn("mobs:cow", {"default:dirt_with_grass"}, 20, 8, 7000, 7, 310
 
 mobs:register_mob("mobs:creeper", {
 	type = "monster",
-	hp_max = 50,
+	hp_max = 30,
 	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.8, 0.4},
 	textures = {"creeper.png"},
 	visual = "mesh",
