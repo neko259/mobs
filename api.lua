@@ -172,7 +172,7 @@ mobs.default_definition = {
 					self.animation.speed_normal, 0
 				)
 				self.animation.current = "hurt"
-				self.animation.hurtdur = (self.animation.hurt_end - self.animation.hurt_start)/self.animation.speed_normal
+				self.animation.hurtdur = (self.animation.hurt_end - self.animation.hurt_start)/self.animation.speed_normal - 1
 			end
 		elseif type == "death" and self.animation.current ~= "death"  then
 			self.animation.deathdur = 1
@@ -186,7 +186,7 @@ mobs.default_definition = {
 					self.animation.speed_normal, 0
 				)
 				self.animation.current = "death"
-				self.animation.deathdur = (self.animation.death_end - self.animation.death_start)/self.animation.speed_normal
+				self.animation.deathdur = (self.animation.death_end - self.animation.death_start)/self.animation.speed_normal - .5
 			end
 		end
 	end,
