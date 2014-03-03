@@ -231,8 +231,8 @@ mobs:register_mob("mobs:sheep", {
 					self.food = 0
 					self.naked = false
 					self.object:set_properties({
-						textures = {"mobs_sheep.png"},
-						mesh = "mobs_sheep.x",
+						textures = {"sheep.png"},
+						-- mesh = "sheep.x",
 					})
 				end
 			end
