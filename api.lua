@@ -100,6 +100,30 @@ mobs.default_definition = {
 				)
 				self.animation.current = "stand"
 			end
+		elseif type == "look" and self.animation.current ~= "look" then
+			if
+				self.animation.look_start
+				and self.animation.look_end
+				and self.animation.speed_normal
+			then
+				self.object:set_animation(
+					{x=self.animation.look_start,y=self.animation.look_end},
+					self.animation.speed_normal, 0
+				)
+				self.animation.current = "look"
+			end
+		elseif type == "eat" and self.animation.current ~= "eat" then
+			if
+				self.animation.eat_start
+				and self.animation.eat_end
+				and self.animation.speed_normal
+			then
+				self.object:set_animation(
+					{x=self.animation.eat_start,y=self.animation.eat_end},
+					self.animation.speed_normal, 0
+				)
+				self.animation.current = "eat"
+			end
 		elseif type == "walk" and self.animation.current ~= "walk"  then
 			if
 				self.animation.walk_start
@@ -135,6 +159,34 @@ mobs.default_definition = {
 					self.animation.speed_normal, 0
 				)
 				self.animation.current = "punch"
+			end
+		elseif type == "hurt" and self.animation.current ~= "hurt"  then
+			self.animation.hurtdur = .5
+			if
+				self.animation.hurt_start
+				and self.animation.hurt_end
+				and self.animation.speed_normal
+			then
+				self.object:set_animation(
+					{x=self.animation.hurt_start,y=self.animation.hurt_end},
+					self.animation.speed_normal, 0
+				)
+				self.animation.current = "hurt"
+				self.animation.hurtdur = (self.animation.hurt_end - self.animation.hurt_start)/self.animation.speed_normal
+			end
+		elseif type == "death" and self.animation.current ~= "death"  then
+			self.animation.deathdur = 1
+			if
+				self.animation.death_start
+				and self.animation.death_end
+				and self.animation.speed_normal
+			then
+				self.object:set_animation(
+					{x=self.animation.death_start,y=self.animation.death_end},
+					self.animation.speed_normal, 0
+				)
+				self.animation.current = "death"
+				self.animation.deathdur = (self.animation.death_end - self.animation.death_start)/self.animation.speed_normal
 			end
 		end
 	end,
@@ -329,6 +381,12 @@ mobs.default_definition = {
 			end
 			self.set_velocity(self, 0)
 			self.set_animation(self, "stand")
+			local standanim = math.random(1,3)
+			if standanim == 2 then
+				self.set_animation(self, "look")
+			elseif standanim == 3 then
+				self.set_animation(self, "eat")
+			end
 			if math.random(1, 100) <= 50 then
 				self.set_velocity(self, self.walk_velocity)
 				self.state = "walk"
@@ -386,6 +444,8 @@ mobs.default_definition = {
 				yaw = yaw - 14*math.pi/180
 			end
 			self.object:setyaw(yaw)
+			-- self.object:set_animation({x=1,y=1},15,0)  -- **********
+			-- self.object:set_bone_position("Head", {x=0,z=3.6,y=7.5}, {x=4,z=6,y=8}) -- *******
 			if self.attack.dist > 2 then
 				if not self.v_start then
 					self.v_start = true
@@ -501,7 +561,12 @@ mobs.default_definition = {
 	end,
 	
 	on_punch = function(self, hitter)
-		if self.object:get_hp() <= 0 then
+		if self.object:get_hp() <= 20 then
+			self:set_animation("death")
+			self.object:set_hp(1000)
+			minetest.after(self.animation.deathdur, function()
+				self.object:remove()
+			end)
 			if self.sounds and self.sounds.death then
 				minetest.sound_play(self.sounds.death, {object = self.object})
 			end
@@ -518,6 +583,10 @@ mobs.default_definition = {
 			if self.sounds and self.sounds.hurt then
 				minetest.sound_play(self.sounds.hurt, {object = self.object})
 			end
+			self:set_animation("hurt")
+			minetest.after(self.animation.hurtdur, function()
+				self:set_animation("walk")
+			end)
 		end
 	end,
 
