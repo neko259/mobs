@@ -14,10 +14,13 @@ Sounds are from the Minecraft Wiki (Freesound license)
 =====Pig=====(at layer 1)
 =====Cow=====(at layer 2)
 =====Sheep=====(at layer 3)
-===Chicken===
+
 Ver.0.3
 Mesh by Morn76
 Animation by Pavel_S
+
+===Chicken===
+Mesh and animation by Pavel_S
 
 Meshes : Pig, Cow, Sheep
 Armatures : Pig_Rig, Cow_Rig, Sheep_Rig
