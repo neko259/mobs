@@ -695,6 +695,7 @@ function mobs:register_arrow(name, def)
 			for _,player in pairs(minetest.env:get_objects_inside_radius(pos, 1)) do
 				if player:is_player() then
 					self.hit_player(self, player)
+					minetest.sound_play("bowhit1", {pos = pos})
 					self.object:remove()
 					return
 				end

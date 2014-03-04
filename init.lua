@@ -515,6 +515,95 @@ mobs:register_spawn("mobs:skeleton", {"group:crumbly", "group:cracky", "group:ch
 
 
 
+
+mobs:register_mob("mobs:zombie", {
+	type = "monster",
+	hp_max = 35,
+	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.8, 0.4},
+	textures = {"zombie.png"},
+	visual = "mesh",
+	mesh = "zombie.x",
+	makes_footstep_sound = false,
+	sounds = {
+		random = "zombie1",
+		death = "zombiedeath",
+		hurt = "zombiehurt1",
+	},
+	walk_velocity = .8,
+	run_velocity = 1.6,
+	damage = 1,
+	armor = 200,
+	drops = {
+		{name = "default:steel_ingot",
+		chance = 1,
+		min = 0,
+		max = 2,},
+		{name = "default:shovel_steel",
+		chance = 4,
+		min = 1,
+		max = 1,},
+		{name = "default:sword_steel",
+		chance = 8,
+		min = 1,
+		max = 1,},
+	},
+	animation = {
+		speed_normal = 24,
+		speed_run = 48,
+		stand_start = 0,
+		stand_end = 23,
+		walk_start = 24,
+		walk_end = 49,
+		run_start = 24,
+		run_end = 49,
+		hurt_start = 110,
+		hurt_end = 139,
+		death_start = 140,
+		death_end = 189,
+		look_start = 50,
+		look_end = 108,
+	},
+	drawtype = "front",
+	water_damage = 1,
+	lava_damage = 5,
+	light_damage = 1,
+	view_range = 16,
+	attack_type = "dogfight",
+})
+mobs:register_spawn("mobs:zombie", {"group:crumbly", "group:cracky", "group:choppy", "group:snappy"}, 7, -1, 5000, 4, 31000)
+
+
+
+
+
+
+-- from throwing mod by PilzAdam:
+minetest.register_node("mobs:arrow_box", {
+	drawtype = "nodebox",
+	node_box = {
+		type = "fixed",
+		fixed = {
+			-- Schaft
+			{-6.5/17, -1.5/17, -1.5/17, 6.5/17, 1.5/17, 1.5/17},
+			--Spitze
+			{-4.5/17, 2.5/17, 2.5/17, -3.5/17, -2.5/17, -2.5/17},
+			{-8.5/17, 0.5/17, 0.5/17, -6.5/17, -0.5/17, -0.5/17},
+			--Federn
+			{6.5/17, 1.5/17, 1.5/17, 7.5/17, 2.5/17, 2.5/17},
+			{7.5/17, -2.5/17, 2.5/17, 6.5/17, -1.5/17, 1.5/17},
+			{7.5/17, 2.5/17, -2.5/17, 6.5/17, 1.5/17, -1.5/17},
+			{6.5/17, -1.5/17, -1.5/17, 7.5/17, -2.5/17, -2.5/17},
+
+			{7.5/17, 2.5/17, 2.5/17, 8.5/17, 3.5/17, 3.5/17},
+			{8.5/17, -3.5/17, 3.5/17, 7.5/17, -2.5/17, 2.5/17},
+			{8.5/17, 3.5/17, -3.5/17, 7.5/17, 2.5/17, -2.5/17},
+			{7.5/17, -2.5/17, -2.5/17, 8.5/17, -3.5/17, -3.5/17},
+		}
+	},
+	tiles = {"throwing_arrow.png", "throwing_arrow.png", "throwing_arrow_back.png", "throwing_arrow_front.png", "throwing_arrow_2.png", "throwing_arrow.png"},
+	groups = {not_in_creative_inventory=1},
+})
+
 minetest.register_craftitem("mobs:meat_raw", {
 	description = "Raw Meat",
 	inventory_image = "mobs_meat_raw.png",
@@ -713,9 +802,13 @@ mobs:register_arrow("mobs:fireball", {
 
 
 mobs:register_arrow("mobs:arrow", {
+--[[	visual = "wielditem",
+	visual_size = {x=.1, y=.1},
+	textures = {"mobs:arrow_box"},  ]]
 	visual = "sprite",
 	visual_size = {x=1, y=1},
 	textures = {"mobs_fireball.png"},
+
 	velocity = 15,
 	hit_player = function(self, player)
 		local s = self.object:getpos()
