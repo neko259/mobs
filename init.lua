@@ -459,6 +459,62 @@ mobs:register_spawn("mobs:creeper", {"group:crumbly", "group:cracky", "group:cho
 
 
 
+mobs:register_mob("mobs:skeleton", {
+	type = "monster",
+	hp_max = 30,
+	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1.8, 0.4},
+	textures = {"skeleton.png"},
+	visual = "mesh",
+	mesh = "skeleton.x",
+	makes_footstep_sound = true,
+	sounds = {
+		random = "skeleton1",
+		death = "skeletondeath",
+		hurt = "skeletonhurt1",
+	},
+	walk_velocity = 1.2,
+	run_velocity = 2.4,
+	damage = 1,
+	armor = 200,
+	drops = {
+		{name = "throwing:arrow",
+		chance = 1,
+		min = 0,
+		max = 2,},
+		{name = "throwing:bow_steel",
+		chance = 3,
+		min = 1,
+		max = 1,},
+	},
+	animation = {
+		speed_normal = 24,
+		speed_run = 48,
+		stand_start = 0,
+		stand_end = 23,
+		walk_start = 24,
+		walk_end = 49,
+		run_start = 24,
+		run_end = 49,
+		hurt_start = 110,
+		hurt_end = 139,
+		death_start = 140,
+		death_end = 189,
+		look_start = 50,
+		look_end = 108,
+	},
+	drawtype = "front",
+	water_damage = 1,
+	lava_damage = 5,
+	light_damage = 1,
+	view_range = 16,
+	attack_type = "shoot",
+	arrow = "mobs:arrow",
+	shoot_interval = 2.5,
+})
+mobs:register_spawn("mobs:skeleton", {"group:crumbly", "group:cracky", "group:choppy", "group:snappy"}, 7, -1, 5000, 4, 31000)
+
+
+
 minetest.register_craftitem("mobs:meat_raw", {
 	description = "Raw Meat",
 	inventory_image = "mobs_meat_raw.png",
@@ -654,6 +710,43 @@ mobs:register_arrow("mobs:fireball", {
 		end
 	end
 })
+
+
+mobs:register_arrow("mobs:arrow", {
+	visual = "sprite",
+	visual_size = {x=1, y=1},
+	textures = {"mobs_fireball.png"},
+	velocity = 15,
+	hit_player = function(self, player)
+		local s = self.object:getpos()
+		local p = player:getpos()
+		local vec = {x=s.x-p.x, y=s.y-p.y, z=s.z-p.z}
+		player:punch(self.object, 1.0,  {
+			full_punch_interval=1.0,
+			damage_groups = {fleshy=2},
+		}, vec)
+		local pos = self.object:getpos()
+		for dx=-1,1 do
+			for dy=-1,1 do
+				for dz=-1,1 do
+					local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
+					minetest.env:remove_node(p)
+				end
+			end
+		end
+	end,
+	hit_node = function(self, pos, node)
+		for dx=-1,1 do
+			for dy=-2,1 do
+				for dz=-1,1 do
+					local p = {x=pos.x+dx, y=pos.y+dy, z=pos.z+dz}
+					minetest.env:remove_node(p)
+				end
+			end
+		end
+	end
+})
+
 
 if minetest.setting_get("log_mods") then
 	minetest.log("action", "mobs loaded")

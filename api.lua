@@ -502,6 +502,7 @@ mobs.default_definition = {
 				return
 			else
 				self.attack.dist = dist
+				self.shoot_interval = (dist + self.view_range) / self.view_range
 			end
 			
 			local vec = {x=p.x-s.x, y=p.y-s.y, z=p.z-s.z}
