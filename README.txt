@@ -3,6 +3,9 @@ Notes
 
 cows: right-click with empty bucket gets milk
 sheep: right-click gets wool
+chicken: right-click to get an egg
+
+Milk and eggs need a food mod to be installed.
 
 Textures are from Faithful 32x32 pack (http://www.minecraftforum.net/topic/72747-faithful-32x32-pack-updateocelot-two-cats-new-saplings-ctm-17/)
 
@@ -11,6 +14,7 @@ Sounds are from the Minecraft Wiki (Freesound license)
 =====Pig=====(at layer 1)
 =====Cow=====(at layer 2)
 =====Sheep=====(at layer 3)
+===Chicken===
 Ver.0.3
 Mesh by Morn76
 Animation by Pavel_S
