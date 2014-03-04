@@ -523,7 +523,7 @@ mobs:register_mob("mobs:zombie", {
 	textures = {"zombie.png"},
 	visual = "mesh",
 	mesh = "zombie.x",
-	makes_footstep_sound = false,
+	makes_footstep_sound = true,
 	sounds = {
 		random = "zombie1",
 		death = "zombiedeath",
