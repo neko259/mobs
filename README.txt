@@ -8,9 +8,74 @@ Textures are from Faithful 32x32 pack (http://www.minecraftforum.net/topic/72747
 
 Sounds are from the Minecraft Wiki (Freesound license)
 
+=====Pig=====(at layer 1)
+=====Cow=====(at layer 2)
+=====Sheep=====(at layer 3)
+Ver.0.3
+Mesh by Morn76
+Animation by Pavel_S
+
+Meshes : Pig, Cow, Sheep
+Armatures : Pig_Rig, Cow_Rig, Sheep_Rig
+
+==Animation==
+Optimized for 24fps.
+(the last frame equal to first in each animation)
+The first frame of each animation is default pose.
+=List of animations :
+	standing (head bobbing slightly up and down) : 1-24
+	walking : 24-50
+	eating (head goes to the ground) : 50-79
+		eating cycle : 58-73
+	look around
+		right : 79-99
+		looking left pose : 89
+		left : 99-119
+		looking right pose : 109
+	hurt (quick half jump with legs slightly crossed) : 119-155
+	death (falls on left side) : 155-180
+
+There is no delays for looking around and repeats for eating!
+
+==Rig==
+See Pig_Rig.png
+
+==ChangeLog==
+0.3
+Added Cow, Sheep
+Added Cow and Sheep animations
+Fixed UVunwraps
+Extended hurt and death animation
+
+0.2
+Added Pig animation
+Fixed UVunwrap
+
+=====Creeper=====
+Ver.0.3
+Mesh by Morn76
+Animation by Pavel_S
+
+Meshes : Creeper
+Armatures : Creeper_Rig
+
+==Animation==
+Optimized for 24fps.
+(the last frame equal to first in each animation)
+The first frame of each animation is default pose.
+=List of animations :
+	standing : 1-25
+	walking : 25-50
+	look around
+		right : 50-80
+		looking left pose : 65
+		left : 80-110
+		looking right pose : 95
+	hurt : 110-140
+	death : 140-190
 
 
-Original README follows
+Original "simple mobs" README follows
 
 === MOBS-MOD for MINETEST-C55 ===
 by PilzAdam

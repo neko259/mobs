@@ -124,6 +124,18 @@ mobs.default_definition = {
 				)
 				self.animation.current = "eat"
 			end
+		elseif type == "fly" and self.animation.current ~= "fly" then
+			if
+				self.animation.fly_start
+				and self.animation.fly_end
+				and self.animation.speed_normal
+			then
+				self.object:set_animation(
+					{x=self.animation.fly_start,y=self.animation.fly_end},
+					self.animation.speed_normal, 0
+				)
+				self.animation.current = "fly"
+			end
 		elseif type == "walk" and self.animation.current ~= "walk"  then
 			if
 				self.animation.walk_start
@@ -199,7 +211,7 @@ mobs.default_definition = {
 		self.lifetimer = self.lifetimer - dtime
 		if self.lifetimer <= 0 and not self.tamed then
 			local player_count = 0
-			for _,obj in ipairs(minetest.env:get_objects_inside_radius(self.object:getpos(), 20)) do
+			for _,obj in ipairs(minetest.env:get_objects_inside_radius(self.object:getpos(), 30)) do
 				if obj:is_player() then
 					player_count = player_count+1
 				end
@@ -209,7 +221,6 @@ mobs.default_definition = {
 				return
 			end
 		end
-		
 		if self.object:getvelocity().y > 0.1 then
 			local yaw = self.object:getyaw()
 			if self.drawtype == "side" then
@@ -381,11 +392,13 @@ mobs.default_definition = {
 			end
 			self.set_velocity(self, 0)
 			self.set_animation(self, "stand")
-			local standanim = math.random(1,3)
+			local standanim = math.random(1,4)
 			if standanim == 2 then
 				self.set_animation(self, "look")
 			elseif standanim == 3 then
 				self.set_animation(self, "eat")
+			elseif standanim == 4 then
+				self.set_animation(self, "fly")
 			end
 			if math.random(1, 100) <= 50 then
 				self.set_velocity(self, self.walk_velocity)
@@ -444,8 +457,6 @@ mobs.default_definition = {
 				yaw = yaw - 14*math.pi/180
 			end
 			self.object:setyaw(yaw)
-			-- self.object:set_animation({x=1,y=1},15,0)  -- **********
-			-- self.object:set_bone_position("Head", {x=0,z=3.6,y=7.5}, {x=4,z=6,y=8}) -- *******
 			if self.attack.dist > 2 then
 				if not self.v_start then
 					self.v_start = true

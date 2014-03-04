@@ -172,7 +172,7 @@ mobs:register_mob("mobs:tree_monster", {
 mobs:register_mob("mobs:sheep", {
 	type = "animal",
 	hp_max = 25,
-	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
+	collisionbox = {-0.5, -0.01, -0.5, 0.5, 1.5, 0.5},
 	textures = {"sheep.png"},
 	visual = "mesh",
 	mesh = "sheep.x",
@@ -256,7 +256,7 @@ mobs:register_spawn("mobs:sheep", {"default:dirt_with_grass"}, 20, 12, 5000, 8, 
 mobs:register_mob("mobs:pig", {
 	type = "animal",
 	hp_max = 25,
-	collisionbox = {-0.3, -0.01, -0.4, 0.3, 1, 0.4},
+	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
 	textures = {"pig.png"},
 	visual = "mesh",
 	mesh = "pig.x",
@@ -302,7 +302,7 @@ mobs:register_spawn("mobs:pig", {"default:dirt_with_grass"}, 20, 12, 5000, 8, 31
 mobs:register_mob("mobs:cow", {
 	type = "animal",
 	hp_max = 28,
-	collisionbox = {-0.3, -0.01, -0.8, 0.3, 1.8, 0.8},
+	collisionbox = {-0.6, -0.01, -0.6, 0.6, 1.8, 0.6},
 	textures = {"cow.png"},
 	visual = "mesh",
 	mesh = "cow.x",
@@ -351,6 +351,61 @@ mobs:register_mob("mobs:cow", {
 	end,
 })
 mobs:register_spawn("mobs:cow", {"default:dirt_with_grass"}, 20, 8, 7000, 7, 31000)
+
+
+mobs:register_mob("mobs:chicken", {
+	type = "animal",
+	hp_max = 24,
+	collisionbox = {-0.4, -0.01, -0.4, 0.4, 1, 0.4},
+	textures = {"chicken.png"},
+	visual = "mesh",
+	mesh = "chicken.x",
+	makes_footstep_sound = true,
+	walk_velocity = 1,
+	armor = 200,
+	drops = {
+		{name = "mobs:meat_raw",
+		chance = 1,
+		min = 1,
+		max = 1,},
+	},
+	drawtype = "front",
+	water_damage = 1,
+	lava_damage = 5,
+	light_damage = 0,
+	sounds = {
+		random = "Chicken1",
+		death = "Chickenhurt1",
+		hurt = "Chickenhurt1",
+	},
+	animation = {
+		speed_normal = 24,
+		stand_start = 0,
+		stand_end = 23,
+		walk_start = 24,
+		walk_end = 49,
+		hurt_start = 118,
+		hurt_end = 154,
+		death_start = 154,
+		death_end = 179,
+		eat_start = 49,
+		eat_end = 78,
+		look_start = 78,
+		look_end = 108,
+		fly_start = 181,
+		fly_end = 187,
+	},
+	follow = "farming:wheat",
+	view_range = 5,
+	on_rightclick = function(self, clicker)
+		if clicker:get_inventory() then
+			if minetest.registered_items["food:egg"] then
+				clicker:get_inventory():add_item("main", ItemStack("food:egg 1"))
+			end
+		end
+	end,
+})
+mobs:register_spawn("mobs:chicken", {"default:dirt_with_grass"}, 20, 8, 7000, 7, 31000)
 
 
 
