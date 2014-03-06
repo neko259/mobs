@@ -81,6 +81,25 @@ The first frame of each animation is default pose.
 	hurt : 110-140
 	death : 140-190
 
+=====Skeleton=====
+Ver.0.3
+Mesh by Morn76
+Animation by Pavel_S
+
+Meshes : Skeleton
+Armatures : Skeleton_Rig
+
+==Animation==
+Optimized for 30fps.
+(the last frame equal to first in each animation)
+The first frame of each animation is default pose.
+=List of animations :
+	standing (head bobbing slightly up and down) : 1-25
+	walking : 25-50
+	hurt (quick half jump with legs slightly crossed) : 85-117
+	death (falls on left side) : 117-146
+
+*******************************************************************************
 
 Original "simple mobs" README follows
 

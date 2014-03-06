@@ -124,6 +124,19 @@ mobs.default_definition = {
 				)
 				self.animation.current = "eat"
 			end
+		elseif type == "shoot" and self.animation.current ~= "shoot" then
+			if
+				self.animation.shoot_start
+				and self.animation.shoot_end
+				and self.animation.speed_normal
+			then
+				self.object:set_animation(
+					{x=self.animation.shoot_start,y=self.animation.shoot_end},
+					self.animation.speed_normal, 0
+				)
+				self.animation.shootdur = (self.animation.shoot_end - self.animation.shoot_start)/self.animation.speed_normal - .5
+				self.animation.current = "shoot"
+			end
 		elseif type == "fly" and self.animation.current ~= "fly" then
 			if
 				self.animation.fly_start
@@ -519,8 +532,10 @@ mobs.default_definition = {
 			if self.timer > self.shoot_interval and math.random(1, 100) <= 60 then
 				self.timer = 0
 				
-				self:set_animation("punch")
-				
+				self:set_animation("shoot")
+				minetest.after(self.animation.shootdur, function()
+				self:set_animation("walk")
+				end)
 				if self.sounds and self.sounds.attack then
 					minetest.sound_play(self.sounds.attack, {object = self.object})
 				end
