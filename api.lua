@@ -527,8 +527,13 @@ mobs.default_definition = {
 				yaw = yaw+math.pi
 			end
 			self.object:setyaw(yaw)
-			self.set_velocity(self, 0)
-			
+			if self.attack.dist < 4 then
+				self.set_velocity(self, -self.run_velocity)
+			elseif self.attack.dist > 8 then
+				self.set_velocity(self, self.run_velocity)
+			else
+				self.set_velocity(self, 0)
+			end
 			if self.timer > self.shoot_interval and math.random(1, 100) <= 60 then
 				self.timer = 0
 				
