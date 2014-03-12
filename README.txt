@@ -99,6 +99,16 @@ The first frame of each animation is default pose.
 	hurt (quick half jump with legs slightly crossed) : 85-117
 	death (falls on left side) : 117-146
 
+=====Zombie=====
+Mesh by Morn76
+Animation by Pavel_S
+
+ 1 - 24   - standing
+24 - 48   - walking
+48 - 64   - running
+64 - 88   - hurm
+88 - 120 - death
+
 *******************************************************************************
 
 Original "simple mobs" README follows
